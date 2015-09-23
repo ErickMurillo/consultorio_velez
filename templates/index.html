@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block content %}
+<div class="row">
+	{% for obj in casos %}
+	<div class="col s12 m4">
+		<div class="card medium">
+			<div class="card-image">
+				{% for d in obj.subirfotos_set.all|slice:":1" %}
+				{% thumbnail d.imagen "200x200" crop="center" as img %}
+				<img src="/media/{{img}}">
+				{% endthumbnail %}
+				{% endfor %}
+				<span class="card-title">{{obj.titulo}}</span>
+			</div>
+			<div class="card-content">
+				{{obj.descripcion|safe}}
+			</div>
+			<div class="card-action">
+				<a href="{% url 'detail-case' obj.slug %}">Leer más</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+<div class="row">
+	<form class="col s8" action="." method="POST">{% csrf_token %}
+		<div class="row">
+			<div class="input-field col s6">
+				<i class="material-icons prefix">account_circle</i>
+				{{form.name}}
+				<label for="icon_prefix">Nombre</label>
+			</div>
+			<div class="input-field col s6">
+				<i class="material-icons prefix">phone</i>
+				{{form.phone}}
+				<label for="icon_telephone">Telefono</label>
+			</div>
+			<div class="input-field col s12">
+	            {{form.message}}
+	            <label for="textarea1">Mensaje</label>
+	        </div>
+	         <input class="submitform" type="submit" name="submitform" value="Enviar mensaje" />
+		</div>
+	</form>
+</div>
+
+
+{% endblock content %}

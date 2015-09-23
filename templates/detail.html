@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block extra_js %}
+<script>
+	$(document).ready(function(){
+    	$('.materialboxed').materialbox();
+  	});
+</script>
+	 
+{% endblock extra_js %}
+
+{% block content %}
+	{{caso.titulo}}
+
+	{% for d in caso.subirfotos_set.all %}
+		{% thumbnail d.imagen "800x500" crop="center" as img %}
+			<img class="materialboxed" width="250" src="/media/{{img}}">
+		{% endthumbnail %}
+	{% endfor %}
+
+{% endblock content %}

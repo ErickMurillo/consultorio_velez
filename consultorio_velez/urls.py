@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """consultorio_velez URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,10 +14,19 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+
+from django.conf.urls import *
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+
+admin.site.site_header = "Administración Dr. Velez Ponce"
+admin.site.site_title = "Administración Dr. Velez Ponce"
 
 urlpatterns = [
+	url(r'^$', 'especialidades.views.index', name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-]
+    url(r'^detalle/(?P<slug>[\w-]+)/$', 'especialidades.views.detalle', name='detail-case'),
+    url(r'^email/send/$', 'especialidades.views.send_mail', name='send-mail')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

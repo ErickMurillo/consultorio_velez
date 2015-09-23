@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.template.defaultfilters import slugify
 from ckeditor.fields import RichTextField
 from especialidades.utils import get_file_path
+from sorl.thumbnail import ImageField
 
 # Create your models here.
 CATEGORIA_CHOICES = (
@@ -12,17 +14,29 @@ CATEGORIA_CHOICES = (
 	)
 
 class Casos(models.Model):
-	titulo =  models.CharField(max_length=200)
+	titulo =  models.CharField(max_length=450)
+	slug = models.SlugField(editable=False, max_length=450)
 	categoria = models.IntegerField(choices=CATEGORIA_CHOICES)
 	descripcion = RichTextField()
 	video = models.URLField(blank=True,null=True,verbose_name='Url del video (opcional)')
 
+	def __unicode__(self):
+		return self.titulo
+
+	def save(self, *args, **kwargs):
+		self.slug = (slugify(self.titulo))
+		super(Casos, self).save(*args, **kwargs)
+		
 	class Meta:
-        verbose_name = 'Caso médico'
-        verbose_name_plural = 'Casos médicos'
+		verbose_name = 'Caso médico'
+		verbose_name_plural = 'Casos médicos'
 
 class SubirFotos(models.Model):
-	imagen = models.ImageField()
+	imagen = ImageField(upload_to=get_file_path)
 	casos = models.ForeignKey(Casos)
 
-	fileDir = 'media/'
+	fileDir = 'fotos/'
+
+	class Meta:
+		verbose_name = 'Foto'
+		verbose_name_plural = 'Fotos'
