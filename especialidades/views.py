@@ -11,37 +11,30 @@ from .forms import *
 
 # Create your views here.
 def index(request,template="index.html"):
-	casos = Casos.objects.all().order_by('-id')[:3]
+	casos = Casos.objects.all().order_by('-id')[:6]
 
 	if request.method == 'POST':
 		mensaje = None
 		form = EmailForm(request.POST)
 		if form.is_valid():
-			request.session['name'] = form.cleaned_data['name']
-			request.session['email'] = form.cleaned_data['email']
-			request.session['phone'] = form.cleaned_data['phone']
-			request.session['message'] = form.cleaned_data['message']
+			name = form.cleaned_data.get('name')
+			#email = form.cleaned_data.get['email']
+			#phone = form.cleaned_data.get('phone')
+			#message = form.cleaned_data.get('message')
 			
-			mensaje = "Todas las variables estan correctamente :)"
-			request.session['activo'] = True
-			centinela = 1
-
-			return HttpResponseRedirect('/')
-
-		else:
-			centinela = 0
+			subject = 'Prueba'
+			from_email = settings.EMAIL_HOST_USER
+			to_email = 'erick_murillo92@hotmail.com'
+			contact_message = "%s" %(name)
+			try:
+				send_mail(subject, contact_message, from_email, to_email, fail_silently=False)
+				return HttpResponseRedirect('/')
+			except:
+				pass
 
 	else:
 		form = EmailForm()
-		mensaje = "Existen alguno errores"
-		centinela = 0
-		try:
-			del request.session['name']
-			del request.session['email']
-			del request.session['phone']
-			del request.session['message']
-		except:
-			pass
+
 	return render(request, template, locals())
 
 
