@@ -28,5 +28,4 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^detalle/(?P<slug>[\w-]+)/$', 'especialidades.views.detalle', name='detail-case'),
-    url(r'^email/send/$', 'especialidades.views.send_mail', name='send-mail')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
