@@ -2,8 +2,39 @@
 {% load thumbnail %}
 
 {% block content %}
+
 <div class="row">
 	<h5>Últimos casos medicos</h5>
+
+<div class="row" id="especialidades">
+    <div class="col s12">
+        <h3 class="center">Especialidades</h3>
+    </div>
+
+    <div class="col s12 m4">
+        <div class="center promo promo-example">
+            <i class="mdi-image-flash-on"></i>
+            <h5 class="promo-caption">Speeds up development</h5>
+            <p class="center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="center promo promo-example">
+            <i class="mdi-social-group"></i>
+            <h5 class="promo-caption">User Experience Focused</h5>
+            <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        </div>
+    </div>
+    <div class="col s12 m4">
+        <div class="center promo promo-example">
+            <i class="mdi-hardware-desktop-windows"></i>
+            <h5 class="promo-caption">Fully responsive</h5>
+            <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="trabajos">
 	{% for obj in casos %}
 	<div class="col s12 m4">
 		<div class="card medium">
@@ -25,32 +56,6 @@
 	</div>
 	{% endfor %}
 </div>
-
-<div class="row">
-	<form class="col s12">
-		<div class="row">
-			<div class="input-field col s6">
-				<i class="material-icons prefix">account_circle</i>
-				<input id="icon_prefix" type="text" class="validate">
-				<label for="icon_prefix">First Name</label>
-			</div>
-			<div class="input-field col s6">
-				<i class="material-icons prefix">phone</i>
-				<input id="icon_telephone" type="tel" class="validate">
-				<label for="icon_telephone">Telephone</label>
-			</div>
-			<div class="input-field col s12">
-				<input id="email" type="email" class="validate">
-				<label for="email">Email</label>
-			</div>
-			<div class="input-field col s12">
-				<textarea id="textarea1" class="materialize-textarea"></textarea>
-				<label for="textarea1">Textarea</label>
-			</div>
-		</div>
-	</form>
-</div>
-
 
 
 {% endblock content %}
