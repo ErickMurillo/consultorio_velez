@@ -29,6 +29,28 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='Experiencia',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('descripcion', ckeditor.fields.RichTextField()),
+            ],
+            options={
+                'verbose_name': 'Dato',
+                'verbose_name_plural': 'Datos',
+            },
+        ),
+        migrations.CreateModel(
+            name='Informacion',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('descripcion', ckeditor.fields.RichTextField()),
+            ],
+            options={
+                'verbose_name': 'Informaci\xf3n',
+                'verbose_name_plural': 'Informaci\xf3n',
+            },
+        ),
+        migrations.CreateModel(
             name='SubirFotos',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),

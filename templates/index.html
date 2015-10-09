@@ -1,60 +1,97 @@
 {% extends "base.html" %}
 {% load thumbnail %}
+{% load embed_video_tags %}
+
+{% block extra_js %}
+<script>
+    $( "#info p" ).addClass( "flow-text" );
+    $( "#experiencia p" ).addClass( "flow-text" );
+</script>
+{% endblock extra_js %}
 
 {% block content %}
+<div class="row" id="info">
+ <div class="col s12 m4">
+  <img src="/static/img/dr.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+</div>
+<div class="col s12 m7 offset-m1">
+    {{info.descripcion|safe}}
+</div>
 
-<div class="row">
-	<h5>Últimos casos medicos</h5>
+</div>
 
 <div class="row" id="especialidades">
-    <div class="col s12">
-        <h3 class="center">Especialidades</h3>
-    </div>
+    <h5 class="h-color center-align">Especialidades</h5>
+    <div class="col s12 m3">
+      <div class="card blue lighten-1">
+        <div class="card-content white-text center-align">
+          <span class="card-title">Ortopedia</span>
+      </div>
+  </div>
+</div>
 
-    <div class="col s12 m4">
-        <div class="center promo promo-example">
-            <i class="mdi-image-flash-on"></i>
-            <h5 class="promo-caption">Speeds up development</h5>
-            <p class="center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
-        </div>
-    </div>
-    <div class="col s12 m4">
-        <div class="center promo promo-example">
-            <i class="mdi-social-group"></i>
-            <h5 class="promo-caption">User Experience Focused</h5>
-            <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-        </div>
-    </div>
-    <div class="col s12 m4">
-        <div class="center promo promo-example">
-            <i class="mdi-hardware-desktop-windows"></i>
-            <h5 class="promo-caption">Fully responsive</h5>
-            <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
-        </div>
-    </div>
+<div class="col s12 m3">
+  <div class="card blue lighten-1">
+    <div class="card-content white-text center-align">
+      <span class="card-title">Trauma</span>
+  </div>
+</div>
+</div>
+
+<div class="col s12 m3">
+  <div class="card blue lighten-1">
+    <div class="card-content white-text center-align">
+      <span class="card-title">Artroscopia</span>
+  </div>
+</div>
+</div>
+
+<div class="col s12 m3">
+  <div class="card blue lighten-1">
+    <div class="card-content white-text center-align">
+      <span class="card-title">Cirugía Biológica</span>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="row" id="experiencia">
+    <h5 class="h-color center-align">Experiencia</h5>
+    {{experiencia.descripcion|safe}}
+
 </div>
 
 <div class="row" id="trabajos">
-	{% for obj in casos %}
-	<div class="col s12 m4">
-		<div class="card medium">
-			<div class="card-image">
-				{% for d in obj.subirfotos_set.all|slice:":1" %}
-				{% thumbnail d.imagen "200x200" crop="center" as img %}
-				<img src="/media/{{img}}">
-				{% endthumbnail %}
-				{% endfor %}
-				<span class="card-title">{{obj.titulo}}</span>
-			</div>
-			<div class="card-content">
-				{{obj.descripcion|safe}}
-			</div>
-			<div class="card-action">
-				<a href="{% url 'detail-case' obj.slug %}">Leer más</a>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
+    <h5 class="h-color center-align">Últimos casos medicos</h5>
+    {% for obj in casos %}
+    <div class="col s12 m4">
+      <div class="card medium">
+       <div class="card-image">
+       {% if obj.video %}
+             {% video obj.video as video %}
+             <img  src="{{ video.thumbnail }}" width="360" height="291"/>
+             {% endvideo %}
+         {% else %}
+         {% for d in obj.subirfotos_set.all|slice:":1" %}
+         {% thumbnail d.imagen "200x200" crop="center" as img %}
+         <img src="/media/{{img}}">
+         {% endthumbnail %}
+         {% endfor %}
+         {% endif %}
+         <span class="card-title">{{obj.titulo}}</span>
+     </div>
+     <div class="card-content">
+        {{obj.descripcion|safe|truncatewords:15}}
+    </div>
+    <div class="card-action">
+        <a href="{% url 'detail-case' obj.slug %}">Leer más</a>
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div>
+    <h6 class="right-align" id="ver-mas"><a href="/lista-casos/">Ver todos</a></h6>
 </div>
 
 

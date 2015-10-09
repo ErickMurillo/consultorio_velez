@@ -40,3 +40,17 @@ class SubirFotos(models.Model):
 	class Meta:
 		verbose_name = 'Foto'
 		verbose_name_plural = 'Fotos'
+
+class Informacion(models.Model):
+	descripcion = RichTextField()
+
+	class Meta:
+		verbose_name = 'Información'
+		verbose_name_plural = 'Información'
+
+class Experiencia(models.Model):
+	descripcion = RichTextField()
+
+	class Meta:
+		verbose_name = 'Experiencia'
+		verbose_name_plural = 'Experiencias'

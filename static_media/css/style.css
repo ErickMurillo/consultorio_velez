@@ -7,3 +7,53 @@ nav{
 	background-color: #42a5f5 !important
 }
 
+/*.video-container iframe, .video-container object, .video-container embed {
+		width: 80% !important;
+		height: 80% !important;
+	}*/
+
+#contenido {
+	margin-top: 4em !important;
+	margin-bottom: 4em !important;
+}
+
+#detalle p {
+	margin-bottom: 3em !important;
+	margin-top: 3em !important;
+}
+
+.pagination li a, .endless_page_current{
+  padding: 0.5em;
+}
+
+#ver-mas {
+	text-transform: uppercase;
+}
+
+#ver-mas a {
+	margin-top: 1em !important;
+	color: #9e9e9e
+}
+
+.h-color {
+	color: #42a5f5;
+	margin-bottom: 2em
+}
+
+.img-width {
+	width: 20% !important
+}
+
+#especialidades {
+	margin-bottom: 4em
+}
+
+.h-filtro {
+	color: #42a5f5;
+	margin-bottom: 0.5em
+}
+
+#dp_swf_engine {
+	display: none !important
+}
+

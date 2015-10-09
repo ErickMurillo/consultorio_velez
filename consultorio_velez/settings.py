@@ -36,8 +36,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'especialidades',
+    #extra
     'ckeditor',
     'sorl.thumbnail',
+    'embed_video',
+    'endless_pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,6 +72,7 @@ TEMPLATES = [
         },
     },
 ]
+ENDLESS_PAGINATION_PER_PAGE = 9
 
 WSGI_APPLICATION = 'consultorio_velez.wsgi.application'
 
@@ -91,3 +95,15 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source'],
+        ]
+    }
+}

@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 admin.site.site_header = "Administración Dr. Velez Ponce"
 admin.site.site_title = "Administración Dr. Velez Ponce"
 
@@ -28,4 +29,12 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^detalle/(?P<slug>[\w-]+)/$', 'especialidades.views.detalle', name='detail-case'),
+    url(r'^lista-casos/$', 'especialidades.views.lista_casos', name='lista_casos'),
+    url(r'^contacto/$', 'especialidades.views.contacto', name='contacto'),
+    #filtros
+    url(r'^lista-ortopedia/$', 'especialidades.views.ortopedia', name='ortopedia'),
+    url(r'^lista-trauma/$', 'especialidades.views.trauma', name='trauma'),
+    url(r'^lista-artroscopia/$', 'especialidades.views.artroscopia', name='artroscopia'),
+    url(r'^lista-cirugia-biologica/$', 'especialidades.views.cirugia_biologica', name='cirugia_biologica'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

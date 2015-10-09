@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load endless %}
+{% load embed_video_tags %}
+
+{% block extra_js %}
+
+{% endblock extra_js %}
+
+{% block content %}
+<div class="row" id="filtros">
+	<h5 class="h-filtro">Filtros:</h5> 
+	<a class="waves-effect waves-light btn" href="/lista-casos/">Todos</a>
+	<a class="waves-effect waves-light btn" href="/lista-ortopedia/">Ortopedia</a>
+	<a class="waves-effect waves-light btn" href="/lista-trauma/">Trauma</a>
+	<a class="waves-effect waves-light btn" href="/lista-artroscopia/">Artroscopia</a>
+	<a class="waves-effect waves-light btn" href="/lista-cirugia-biologica/">Cirugía Biológica</a>
+</div>
+
+<div class="row" id="trabajos">
+	{% paginate casos %}
+	{% for obj in casos %}
+	<div class="col s12 m4">
+		<div class="card medium">
+			<div class="card-image">
+				{% if obj.video %}
+					{% video obj.video as video %}
+					<img  src="{{ video.thumbnail }}" width="360" height="291"/>
+					{% endvideo %}
+				{% else %}
+				{% for d in obj.subirfotos_set.all|slice:":1" %}
+				{% thumbnail d.imagen "200x200" crop="center" as img %}
+				<img src="/media/{{img}}">
+				{% endthumbnail %}
+				{% endfor %}
+				{% endif %}
+				<span class="card-title">{{obj.titulo}}</span>
+			</div>
+			<div class="card-content">
+				{{obj.descripcion|safe|truncatewords:15}}
+			</div>
+			<div class="card-action">
+				<a href="{% url 'detail-case' obj.slug %}">Leer más</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+<div class="row">
+	<ul class="pagination center-align">
+		<li class="waves-effect"><a href="#!">{% show_pages %}</a></li>
+	</ul>
+</div>
+{% endblock content %}
