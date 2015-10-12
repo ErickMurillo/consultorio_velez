@@ -10,20 +10,15 @@ nav{
 /*.video-container iframe, .video-container object, .video-container embed {
 		width: 80% !important;
 		height: 80% !important;
-	}*/
+		}*/
 
 #contenido {
 	margin-top: 4em !important;
 	margin-bottom: 4em !important;
 }
 
-#detalle p {
-	margin-bottom: 3em !important;
-	margin-top: 3em !important;
-}
-
 .pagination li a, .endless_page_current{
-  padding: 0.5em;
+	padding: 0.5em;
 }
 
 #ver-mas {
@@ -37,7 +32,8 @@ nav{
 
 .h-color {
 	color: #42a5f5;
-	margin-bottom: 2em
+	margin-bottom: 2em;
+	text-transform: uppercase;
 }
 
 .img-width {
@@ -57,3 +53,42 @@ nav{
 	display: none !important
 }
 
+#especialidades .card .card-title {
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+.flow-text {
+	font-size: 22px;
+}
+
+nav ul a {
+	text-transform: uppercase;
+}
+
+nav .brand-logo {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+#info, #especialidades, #experiencia {
+	margin-bottom: 5em
+}
+
+footer .white-text {
+	text-transform: uppercase !important;
+	  font-size: 1.5rem !important;
+}
+
+#detalle {
+	margin-bottom: 5em
+}
+
+#relacion {
+	margin-top: 3em;
+	font-size: 1.2rem
+}
+
+.foto {
+	margin-top: 1.5em
+}

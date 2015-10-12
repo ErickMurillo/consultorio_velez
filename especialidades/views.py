@@ -6,43 +6,47 @@ from django.conf import settings
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
+from django.views.generic import TemplateView, ListView, DetailView
 
 # Create your views here.
-def index(request,template="index.html"):
-	casos = Casos.objects.all().order_by('-id')[:6]
-	info = Informacion.objects.all()[:1].get()
-	experiencia = Experiencia.objects.all()[:1].get()
+class IndexView(TemplateView):
+	template_name = "index.html"
 
-	return render(request, template, locals())
+	def get_context_data(self, **kwargs):
+		context = super(IndexView, self).get_context_data(**kwargs)
+		context['casos'] = Casos.objects.all().order_by('-id')[:6]
+		context['info'] = Informacion.objects.all()[:1].get()
+		context['experiencia'] = Experiencia.objects.all()[:1].get()
+		return context
 
-def lista_casos(request, template="casos_list.html"):
-	casos = Casos.objects.all().order_by('-id')
+class ListCasosView(ListView):
+	template_name = "casos_list.html"
+	queryset = Casos.objects.all().order_by('-id')
 
-	return render(request, template, locals())
+class CasoDetail(DetailView):
+	template_name = "detail.html"
+	model = Casos
 
-def detalle(request, slug, template="detail.html"):
-	caso = Casos.objects.get(slug=slug)
-	return render(request, template, locals())
+	def get_context_data(self, **kwargs):
+		context = super(CasoDetail, self).get_context_data(**kwargs)
+		context['casos_relacionados'] = Casos.objects.filter(categoria=self.object.categoria).exclude(id=self.object.id).order_by('-id')[:3]
+		return context
 
-def ortopedia(request, template="casos_list.html"):
-	casos = Casos.objects.filter(categoria=1).order_by('-id')
+class ListOrtopediaView(ListView):
+	template_name = "casos_list.html"
+	queryset = Casos.objects.filter(categoria=1).order_by('-id')
 
-	return render(request, template, locals())
+class ListTraumaView(ListView):
+	template_name = "casos_list.html"
+	queryset = Casos.objects.filter(categoria=2).order_by('-id')
 
-def trauma(request, template="casos_list.html"):
-	casos = Casos.objects.filter(categoria=2).order_by('-id')
-	
-	return render(request, template, locals())
+class ListArtroscopiaView(ListView):
+	template_name = "casos_list.html"
+	queryset = Casos.objects.filter(categoria=3).order_by('-id')
 
-def artroscopia(request, template="casos_list.html"):
-	casos = Casos.objects.filter(categoria=3).order_by('-id')
-	
-	return render(request, template, locals())
-
-def cirugia_biologica(request, template="casos_list.html"):
-	casos = Casos.objects.filter(categoria=4).order_by('-id')
-	
-	return render(request, template, locals())
+class ListCirugia_BiologicaView(ListView):
+	template_name = "casos_list.html"
+	queryset = Casos.objects.filter(categoria=4).order_by('-id')
 
 def contacto(request, template="contacto.html"):
 	arreglo_mail = ['erickmurillo22@gmail.com']
@@ -79,8 +83,5 @@ def contacto(request, template="contacto.html"):
 			
 	else:
 		form = EmailForm()
+		
 	return render(request, template, locals())
-
-def send_mail():
-	pass
-

@@ -13,27 +13,58 @@
 
 {% block content %}
 <div class="row" id="detalle">
-	<h5 class="center">{{caso.titulo}}</h5>
-	{{caso.descripcion|safe}}
+	<h5 class="center">{{object.titulo}}</h5>
+	{{object.descripcion|safe}}
 
-	{% for d in caso.subirfotos_set.all %}
+	{% for d in object.subirfotos_set.all %}
 	{% thumbnail d.imagen "800x500" crop="center" as img %}
-	<div class="col s12 m4">
-		<img class="materialboxed" width="250" src="/media/{{img}}">
+	<div class="col s12 m3 foto">
+		<img class="materialboxed" width="100%" src="/media/{{img}}">
 	</div>
 	{% endthumbnail %}
 	{% endfor %}
-</div>
 
-{% if caso.video %}
-<div class="row">
+	{% if object.video %}
 	<div class="video-container">
-		{% video caso.video as my_video %}
+		{% video object.video as my_video %}
 		<div class="video-container no-controls">
 			<iframe width="853" height="480" src="{{ my_video.url }}" frameborder="0" allowfullscreen></iframe>
 		</div>
 		{% endvideo %}
 	</div>
+	{% endif %}
+</div>
+
+{% if casos_relacionados %}
+<div class="divider"></div>
+<div class="row">
+	<h5 class="h-color left-align" id="relacion">Otros casos</h5>
+	{% for relacion in casos_relacionados %}
+	<div class="col s12 m4">
+		<div class="card medium">
+			<div class="card-image">
+				{% if relacion.video %}
+				{% video relacion.video as video %}
+				<img  src="{{ video.thumbnail }}" width="360" height="291"/>
+				{% endvideo %}
+				{% else %}
+				{% for d in relacion.subirfotos_set.all|slice:":1" %}
+				{% thumbnail d.imagen "200x200" crop="center" as img %}
+				<img src="/media/{{img}}">
+				{% endthumbnail %}
+				{% endfor %}
+				{% endif %}
+				<span class="card-title">{{relacion.titulo}}</span>
+			</div>
+			<div class="card-content">
+				{{relacion.descripcion|safe|truncatewords:15}}
+			</div>
+			<div class="card-action">
+				<a href="{% url 'detail-case' relacion.slug %}">Leer más</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
 </div>
 {% endif %}
 
