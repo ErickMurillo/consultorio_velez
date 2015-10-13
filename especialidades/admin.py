@@ -7,7 +7,7 @@ from sorl.thumbnail.admin import AdminImageMixin
 
 class Fotos_Inline(AdminImageMixin, admin.TabularInline):
 	model = SubirFotos
-	max_num = 10
+	max_num = 16
 	can_delete = True
 
 class CasosAdmin(admin.ModelAdmin):
