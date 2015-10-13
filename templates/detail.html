@@ -15,7 +15,7 @@
 <div class="row" id="detalle">
 	<h5 class="center">{{object.titulo}}</h5>
 	{{object.descripcion|safe}}
-
+	<div class="col s12">
 	{% for d in object.subirfotos_set.all %}
 	{% thumbnail d.imagen "800x500" crop="center" as img %}
 	<div class="col s12 m3 foto">
@@ -23,14 +23,15 @@
 	</div>
 	{% endthumbnail %}
 	{% endfor %}
+	</div>
 
 	{% if object.video %}
-	<div class="video-container">
-		{% video object.video as my_video %}
-		<div class="video-container no-controls">
-			<iframe width="853" height="480" src="{{ my_video.url }}" frameborder="0" allowfullscreen></iframe>
+	<div class="col s12 m8 offset-m2" id="video-cont">
+		<div class="video-container">
+			{% video object.video as my_video %}
+			<iframe width="853" height="480" src="{{my_video.url}}" frameborder="0" allowfullscreen></iframe>
+			{% endvideo %}
 		</div>
-		{% endvideo %}
 	</div>
 	{% endif %}
 </div>
