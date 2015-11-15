@@ -4,94 +4,95 @@
 
 {% block extra_js %}
 <script>
-    $( "#info p" ).addClass( "flow-text" );
-    $( "#experiencia p" ).addClass( "flow-text" );
+	$( "#info" ).addClass( "flow-text" );
+	$( "#experiencia" ).addClass( "flow-text" );
+
 </script>
 {% endblock extra_js %}
 
 {% block content %}
 <div class="row" id="info">
- <div class="col s12 m4">
-  <img src="/static/img/dr.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-</div>
-<div class="col s12 m7 offset-m1">
-    {{info.descripcion|safe}}
-</div>
+	<div class="col s12 m4">
+		<img src="/static/img/dr.jpg" alt="" class="circle responsive-img">
+	</div>
+	<div class="col s12 m7 offset-m1">
+		{{info.descripcion|safe}}
+	</div>
 
 </div>
 
 <div class="row" id="especialidades">
-    <h5 class="h-color center-align">Especialidades</h5>
-    <div class="col s12 m3">
-      <div class="card blue lighten-1">
-        <div class="card-content white-text center-align">
-          <span class="card-title">Ortopedia</span>
-      </div>
-  </div>
-</div>
+	<h5 class="h-color center-align">Especialidades</h5>
+	<div class="col s12 m3">
+		<div class="card blue lighten-1">
+			<div class="card-content white-text center-align">
+				<span class="card-title">Ortopedia</span>
+			</div>
+		</div>
+	</div>
 
-<div class="col s12 m3">
-  <div class="card blue lighten-1">
-    <div class="card-content white-text center-align">
-      <span class="card-title">Trauma</span>
-  </div>
-</div>
-</div>
+	<div class="col s12 m3">
+		<div class="card blue lighten-1">
+			<div class="card-content white-text center-align">
+				<span class="card-title">Trauma</span>
+			</div>
+		</div>
+	</div>
 
-<div class="col s12 m3">
-  <div class="card blue lighten-1">
-    <div class="card-content white-text center-align">
-      <span class="card-title">Artroscopia</span>
-  </div>
-</div>
-</div>
+	<div class="col s12 m3">
+		<div class="card blue lighten-1">
+			<div class="card-content white-text center-align">
+				<span class="card-title">Artroscopia</span>
+			</div>
+		</div>
+	</div>
 
-<div class="col s12 m3">
-  <div class="card blue lighten-1">
-    <div class="card-content white-text center-align">
-      <span class="card-title">Cirugía Biológica</span>
-  </div>
-</div>
-</div>
+	<div class="col s12 m3">
+		<div class="card blue lighten-1">
+			<div class="card-content white-text center-align">
+				<span class="card-title">Cirugía Biológica</span>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="row" id="experiencia">
-    <h5 class="h-color center-align">Experiencia</h5>
-    {{experiencia.descripcion|safe}}
+	<h5 class="h-color center-align">Experiencia</h5>
+	{{experiencia.descripcion|safe}}
 
 </div>
 
 <div class="row" id="trabajos">
-    <h5 class="h-color center-align">Últimos casos medicos</h5>
-    {% for obj in casos %}
-    <div class="col s12 m4">
-      <div class="card medium">
-       <div class="card-image">
-       {% if obj.video %}
-             {% video obj.video as video %}
-             <img  src="{{ video.thumbnail }}" width="360" height="291"/>
-             {% endvideo %}
-         {% else %}
-         {% for d in obj.subirfotos_set.all|slice:":1" %}
-         {% thumbnail d.imagen "200x200" crop="center" as img %}
-         <img src="/media/{{img}}">
-         {% endthumbnail %}
-         {% endfor %}
-         {% endif %}
-         <span class="card-title">{{obj.titulo}}</span>
-     </div>
-     <div class="card-content">
-        {{obj.descripcion|safe|truncatewords:15}}
-    </div>
-    <div class="card-action">
-        <a href="{% url 'detail-case' obj.slug %}">Leer más</a>
-    </div>
-</div>
-</div>
-{% endfor %}
+	<h5 class="h-color center-align">Últimos casos medicos</h5>
+	{% for obj in casos %}
+	<div class="col s12 m4">
+		<div class="card medium">
+			<div class="card-image">
+				{% if obj.video %}
+				{% video obj.video as video %}
+				<img  src="{{ video.thumbnail }}" width="360" height="291"/>
+				{% endvideo %}
+				{% else %}
+				{% for d in obj.subirfotos_set.all|slice:":1" %}
+				{% thumbnail d.imagen "200x200" crop="center" as img %}
+				<img src="/media/{{img}}">
+				{% endthumbnail %}
+				{% endfor %}
+				{% endif %}
+				<span class="card-title">{{obj.titulo}}</span>
+			</div>
+			<div class="card-content">
+				{{obj.descripcion|safe|truncatewords:15}}
+			</div>
+			<div class="card-action">
+				<a href="{% url 'detail-case' obj.slug %}">Leer más</a>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
 </div>
 
 <div id="ver-todos">
-    <h6 class="right-align" id="ver-mas"><a href="/lista-casos/">Ver todos</a></h6>
+	<h6 class="right-align" id="ver-mas"><a href="/lista-casos/">Ver todos</a></h6>
 </div>
 {% endblock content %}

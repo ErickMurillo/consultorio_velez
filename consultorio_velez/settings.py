@@ -72,6 +72,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 ENDLESS_PAGINATION_PER_PAGE = 9
 
 WSGI_APPLICATION = 'consultorio_velez.wsgi.application'
