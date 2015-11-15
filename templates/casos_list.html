@@ -10,11 +10,11 @@
 {% block content %}
 <div class="row" id="filtros">
 	<h5 class="h-filtro">Filtros:</h5> 
-	<a class="waves-effect waves-light btn" href="/lista-casos/">Todos</a>
-	<a class="waves-effect waves-light btn" href="/lista-ortopedia/">Ortopedia</a>
-	<a class="waves-effect waves-light btn" href="/lista-trauma/">Trauma</a>
-	<a class="waves-effect waves-light btn" href="/lista-artroscopia/">Artroscopia</a>
-	<a class="waves-effect waves-light btn" href="/lista-cirugia-biologica/">Cirugía Biológica</a>
+	<a class="waves-effect waves-light btn" href="{% url 'lista_casos' %}">Todos</a>
+	<a class="waves-effect waves-light btn" href="{% url 'ortopedia' %}">Ortopedia</a>
+	<a class="waves-effect waves-light btn" href="{% url 'trauma' %}">Trauma</a>
+	<a class="waves-effect waves-light btn" href="{% url 'artroscopia' %}">Artroscopia</a>
+	<a class="waves-effect waves-light btn" href="{% url 'cirugia_biologica' %}">Cirugía Biológica</a>
 </div>
 
 <div class="row" id="trabajos">

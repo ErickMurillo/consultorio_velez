@@ -29,14 +29,13 @@ urlpatterns = [
 	url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^detalle/(?P<slug>[\w-]+)/$', views.CasoDetail.as_view(), name='detail-case'),
-    #url(r'^lista-casos/$', 'especialidades.views.lista_casos', name='lista_casos'),
+    url(r'^caso/(?P<slug>[\w-]+)/$', views.CasoDetail.as_view(), name='detail-case'),
     url(r'^lista-casos/$', views.ListCasosView.as_view(), name='lista_casos'),
     url(r'^contacto/$', 'especialidades.views.contacto', name='contacto'),
     #filtros
-    url(r'^lista-ortopedia/$', views.ListOrtopediaView.as_view(), name='ortopedia'),
-    url(r'^lista-trauma/$', views.ListTraumaView.as_view(), name='trauma'),
-    url(r'^lista-artroscopia/$', views.ListArtroscopiaView.as_view(), name='artroscopia'),
-    url(r'^lista-cirugia-biologica/$', views.ListCirugia_BiologicaView.as_view(), name='cirugia_biologica'),
+    url(r'^casos-ortopedia/$', views.ListOrtopediaView.as_view(), name='ortopedia'),
+    url(r'^casos-trauma/$', views.ListTraumaView.as_view(), name='trauma'),
+    url(r'^casos-artroscopia/$', views.ListArtroscopiaView.as_view(), name='artroscopia'),
+    url(r'^casos-cirugia-biologica/$', views.ListCirugia_BiologicaView.as_view(), name='cirugia_biologica'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

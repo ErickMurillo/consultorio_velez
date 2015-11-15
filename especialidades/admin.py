@@ -12,6 +12,9 @@ class Fotos_Inline(AdminImageMixin, admin.TabularInline):
 
 class CasosAdmin(admin.ModelAdmin):
 	inlines = [Fotos_Inline]
+	list_display = ('titulo', 'categoria')
+	search_fields = ['titulo','categoria']
+	list_filter = ['categoria',]
 
 
 admin.site.register(Casos,CasosAdmin)
