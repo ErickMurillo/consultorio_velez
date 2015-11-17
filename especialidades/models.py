@@ -33,6 +33,7 @@ class Casos(models.Model):
 
 class SubirFotos(models.Model):
 	imagen = ImageField(upload_to=get_file_path)
+	comentario = models.CharField(max_length=400,null=True,blank=True)
 	casos = models.ForeignKey(Casos)
 
 	fileDir = 'fotos/'
