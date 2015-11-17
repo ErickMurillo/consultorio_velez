@@ -58,27 +58,27 @@ def contacto(request, template="contacto.html"):
 			email = form.cleaned_data['email']
 			phone = form.cleaned_data['phone']
 			message = form.cleaned_data['message']
-			# try:
-			subject, from_email, to = 'Una persona desea contactarlo en la web Dr. Velez Ponce', 'noreply@drvelezponce.com', arreglo_mail
-			text_content = "Una persona desea contactarlo en la web Dr. Velez Ponce " + \
-							'Nombre: ' + str(name) + ', '  + \
-							'Telefono: ' +str( phone) + ', ' + \
-							'Email: ' + str(email) + ', ' + \
-							'Mensaje: ' + str(message) 
+			try:
+				subject, from_email, to = 'Una persona desea contactarlo en la web Dr. Velez Ponce', 'noreply@drvelezponce.com', arreglo_mail
+				text_content = "Una persona desea contactarlo en la web Dr. Velez Ponce " + \
+								'Nombre: ' + str(name) + ', '  + \
+								'Telefono: ' + str( phone) + ', ' + \
+								'Correo: ' + str(email) + ', ' + \
+								'Mensaje: ' + str(message) 
 
-			html_content = "Una persona desea contactarlo en la web Dr. Velez Ponce " + \
-							'Nombre: ' + str(name) + ', '  + \
-							'Telefono: ' + str(phone) + ', ' + \
-							'Email: ' + str(email) + ', ' + \
-							'Mensaje: ' + str(message)
+				html_content = "Una persona desea contactarlo en la web Dr. Velez Ponce " + \
+								'Nombre: ' + str(name) + ', '  + \
+								'Telefono: ' + str(phone) + ', ' + \
+								'Correo: ' + str(email) + ', ' + \
+								'Mensaje: ' + str(message)
 
-			msg = EmailMultiAlternatives(subject, text_content, from_email, arreglo_mail)
-			msg.attach_alternative(html_content, "text/html")
-			msg.send()
+				msg = EmailMultiAlternatives(subject, text_content, from_email, arreglo_mail)
+				msg.attach_alternative(html_content, "text/html")
+				msg.send()
 
-			return HttpResponseRedirect('/')
-			# except:
-			# 	pass
+				return HttpResponseRedirect('/')
+			except:
+				pass
 			
 	else:
 		form = EmailForm()
