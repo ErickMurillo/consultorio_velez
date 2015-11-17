@@ -17,7 +17,7 @@
 	{{object.descripcion|safe}}
 	<div class="col s12">
 	{% for d in object.subirfotos_set.all %}
-	{% thumbnail d.imagen "800x500" crop="center" as img %}
+	{% thumbnail d.imagen "800x500" crop='center' as img %}
 	<div class="col s12 m3 foto">
 		<img class="materialboxed" width="100%" src="/media/{{img}}">
 	</div>

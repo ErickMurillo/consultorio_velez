@@ -74,7 +74,7 @@
 				{% endvideo %}
 				{% else %}
 				{% for d in obj.subirfotos_set.all|slice:":1" %}
-				{% thumbnail d.imagen "200x200" crop="center" as img %}
+				{% thumbnail d.imagen "400x400" crop="center" as img %}
 				<img src="/media/{{img}}">
 				{% endthumbnail %}
 				{% endfor %}
