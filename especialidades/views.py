@@ -48,11 +48,10 @@ class ListCirugia_BiologicaView(ListView):
 	queryset = Casos.objects.filter(categoria=4).order_by('-id')
 
 def contacto(request, template="contacto.html"):
-	arreglo_mail = ['erickmurillo22@gmail.com']
+	arreglo_mail = ['juancarlos@drvelezponce.com','drvelezponce@yahoo.com', 'erickmurillo22@gmail.com']
 
 	if request.method == 'POST':
 		form = EmailForm(request.POST)
-		print form
 		if form.is_valid():
 			name = form.cleaned_data['name']
 			email = form.cleaned_data['email']
