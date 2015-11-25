@@ -7,11 +7,6 @@ nav{
 	background-color: #42a5f5 !important
 }
 
-/*.video-container iframe, .video-container object, .video-container embed {
-		width: 80% !important;
-		height: 80% !important;
-		}*/
-
 #contenido {
 	margin-top: 4em !important;
 	margin-bottom: 4em !important;
@@ -99,4 +94,22 @@ footer .white-text {
 
 #contenido ul li {
      list-style-type: square !important; 
+}
+
+.foto a img {
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.foto a img:hover {
+	opacity: 0.8;
+	cursor: pointer;
+	-webkit-transform:scale(1.15); /* Safari and Chrome */
+    -moz-transform:scale(1.15); /* Firefox */
+    -ms-transform:scale(1.15); /* IE 9 */
+    -o-transform:scale(1.15); /* Opera */
+     transform:scale(1.15);
 }
