@@ -18,7 +18,7 @@
 	<div class="col s12">
 	{% for d in object.subirfotos_set.all %}
 	{% thumbnail d.imagen "800x500" crop='center' as img %}
-	<div class="col s12 m3 foto">
+	<div class="col s12 m4 l3 foto">
 		<a href="/media/{{img}}" data-lightbox="image-1" {% if d.comentario %}data-title="{{d.comentario}}"{% endif %}><img width="100%" src="/media/{{img}}"></a>
 	</div>
 	{% endthumbnail %}
@@ -41,7 +41,7 @@
 <div class="row">
 	<h5 class="h-color left-align" id="relacion">Otros casos</h5>
 	{% for relacion in casos_relacionados %}
-	<div class="col s12 m4">
+	<div class="col s12 m6 l4">
 		<div class="card medium">
 			<div class="card-image">
 				{% if relacion.video %}

@@ -54,7 +54,7 @@ nav{
 }
 
 .flow-text {
-	font-size: 22px;
+	font-size: 18px;
 }
 
 nav ul a {
@@ -113,3 +113,13 @@ footer .white-text {
     -o-transform:scale(1.15); /* Opera */
      transform:scale(1.15);
 }
+
+.slider .indicators {
+  display: none;
+}
+
+@media (max-width: 600px) { 
+	.slider {
+		display: none;
+	}
+ }
