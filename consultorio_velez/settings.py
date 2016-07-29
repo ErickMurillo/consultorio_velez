@@ -20,7 +20,7 @@ from local_settings import *
 SECRET_KEY = 'h6rkbgpiiqnxfal&1=!yd+bv)9f7ny3_v0@zk-ts9pg_=t^$-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
