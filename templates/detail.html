@@ -6,6 +6,7 @@
 <script>
 	$(document).ready(function(){
 		$('.materialboxed').materialbox();
+		$('#detalle p').addClass('flow-text');
 	});
 </script>
 
@@ -13,7 +14,7 @@
 
 {% block content %}
 <div class="row" id="detalle">
-	<h5 class="center">{{object.titulo}}</h5>
+	<h5 class="center" id="title-detail">{{object.titulo}}</h5>
 	{{object.descripcion|safe}}
 	<div class="col s12">
 	{% for d in object.subirfotos_set.all %}

@@ -20,7 +20,7 @@ from local_settings import *
 SECRET_KEY = 'h6rkbgpiiqnxfal&1=!yd+bv)9f7ny3_v0@zk-ts9pg_=t^$-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'djangocms_admin_style',
-    'django.contrib.admin', 
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
             ],
         },
     },
