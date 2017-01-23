@@ -20,9 +20,11 @@ from local_settings import *
 SECRET_KEY = 'h6rkbgpiiqnxfal&1=!yd+bv)9f7ny3_v0@zk-ts9pg_=t^$-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+# ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = ['*']
+DEBUG = True
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -36,11 +38,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'especialidades',
+    'expedientes',
     #extra
     'ckeditor',
     'sorl.thumbnail',
     'embed_video',
     'endless_pagination',
+    'selectable',
 )
 
 MIDDLEWARE_CLASSES = (
