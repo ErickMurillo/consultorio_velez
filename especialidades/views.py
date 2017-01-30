@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from expedientes.models import *
 from django.conf import settings
 from django.http import HttpResponse,HttpResponseRedirect
 from django.core.mail import send_mail
@@ -62,7 +63,7 @@ def contacto(request, template="contacto.html"):
 								'Nombre: ' + str(name) + ', '  + \
 								'Telefono: ' + str( phone) + ', ' + \
 								'Correo: ' + str(email) + ', ' + \
-								'Mensaje: ' + str(message) 
+								'Mensaje: ' + str(message)
 
 				html_content = "Una persona desea contactarlo en la web Dr. Velez Ponce " + \
 								'Nombre: ' + str(name) + ', '  + \
@@ -77,8 +78,48 @@ def contacto(request, template="contacto.html"):
 				return HttpResponseRedirect('/')
 			except:
 				pass
-			
+
 	else:
 		form = EmailForm()
-		
+
+	return render(request, template, locals())
+
+class ListExpedientesView(ListView):
+	template_name = "expedientes_list.html"
+	queryset = Paciente.objects.all().order_by('-id')
+
+def detail_expediente(request,slug='None'):
+	template = "exp_detail.html"
+	object = Paciente.objects.get(slug = slug)
+	consultas = Consulta.objects.filter(paciente = object)
+
+	#agregar nueva consulta
+	if request.method == 'POST':
+		form = ConsultaForm(request.POST)
+		if form.is_valid():
+			paciente = form.cleaned_data['paciente']
+			fecha = form.cleaned_data['fecha']
+			motivo = form.cleaned_data['motivo']
+			examen_fisico = form.cleaned_data['examen_fisico']
+			examen = form.cleaned_data['examen']
+			tratamiento = form.cleaned_data['tratamiento']
+			programacion_cita = form.cleaned_data['programacion_cita']
+			costo = form.cleaned_data['costo']
+			try:
+				new_consulta = form.save()
+				print new_consulta
+				# new_consulta.paciente = paciente
+				# new_consulta.fecha = fecha
+				# new_consulta.motivo = motivo
+				# new_consulta.examen_fisico = examen_fisico
+				# new_consulta.examen = examen
+				# new_consulta.tratamiento = tratamiento
+				# new_consulta.programacion_cita = programacion_cita
+				# new_consulta.costo = costo
+				# new_consulta.save()
+			except:
+				pass
+	else:
+		form = ConsultaForm()
+
 	return render(request, template, locals())

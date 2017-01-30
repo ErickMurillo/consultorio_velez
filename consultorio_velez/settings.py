@@ -44,7 +44,6 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'embed_video',
     'endless_pagination',
-    'selectable',
 )
 
 MIDDLEWARE_CLASSES = (

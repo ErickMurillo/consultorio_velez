@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link href="/static/css/materialize.clockpicker.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col s6">
+    <h4>{{object.nombre}}</h4>
+    <p>Edad: {{object.edad}} años</p>
+    <p>Sexo: {% if object.sexo == 1 %}Femenino{% elif object.sexo == 2 %}Masculino{% endif %}</p>
+    <p>Nacionalidad: {{object.nacionalidad}}</p>
+    <p>Teléfono: {{object.telefono}}</p>
+  </div>
+  <div class="col s6">
+    {% for consulta in consultas|slice:"1:" %}
+    <p>Próxima cita: {{consulta.programacion_cita|date:"l d F Y"}} Hora:{{ consulta.programacion_cita|time:"P" }}</p>
+    <p>Última cita: {{consulta.fecha|date:"l d F Y"}} Hora:{{ consulta.fecha|time:"P" }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="row">
+  <h3>Consultas</h3>
+  {% for consulta in consultas %}
+  <div class="col s12">
+    <h5>Fecha consulta: {{consulta.fecha|date:"l d F Y"}} Hora:{{ consulta.fecha|time:"P" }}</h5>
+    <p>Motivo: {{consulta.motivo|safe}}</p>
+    <p>Examen físico: {{consulta.examen_fisico|safe}}</p>
+    <p>Examenes: {{consulta.examen|safe}}</p>
+    <p>Tratamiento: {{consulta.tratamiento|safe}}</p>
+    <p>Próxima cita: {{consulta.programacion_cita|date:"l d F Y"}} Hora:{{ consulta.programacion_cita|time:"P" }}</p>
+    <p>Costo de la cita: {{consulta.costo}}</p>
+  </div>
+  <hr>
+  {% endfor %}
+</div>
+
+<div class="row">
+  <form class="col s12" action="." method="POST">{% csrf_token %}
+    <div class="row">
+			<h5>Agregar consulta</h5>
+			<div class="input-field col s6" id="paciente">
+				{{form.paciente}}
+			</div>
+			<div class="input-field col s6">
+				{{form.fecha}}
+				<!--<label for="icon_telephone">Fecha consulta</label>-->
+			</div>
+			<div class="input-field col s12">
+				{{form.motivo}}
+				<label for="textarea1">Motivo consulta</label>
+			</div>
+			<div class="input-field col s12">
+				{{form.examen_fisico}}
+				<label for="textarea1">Examen físico</label>
+			</div>
+      <div class="input-field col s12">
+				{{form.examen}}
+				<label for="textarea1">Examen</label>
+			</div>
+      <div class="input-field col s12">
+				{{form.tratamiento}}
+				<label for="textarea1">Tratamiento</label>
+			</div>
+      <div class="input-field col s6">
+				{{form.programacion_cita}}
+				<label for="icon_telephone">Próxima cita</label>
+			</div>
+      <div class="input-field col s6">
+				{{form.costo}}
+				<label for="icon_telephone">Costo cita</label>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit" name="action">Agregar consulta
+				<i class="material-icons right">send</i>
+			</button>
+		</div>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/js/materialize.clockpicker.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.slider').hide();
+  $('#id_paciente').val("{{object.id}}");
+  $('#id_paciente').hide();
+  $('#id_fecha_0').addClass('datepicker');
+  $('#id_fecha_1').addClass('timepicker');
+  $( "textarea" ).addClass( "materialize-textarea" );
+  $('.datepicker').pickadate({
+   selectMonths: true, // Creates a dropdown to control month
+   selectYears: 15, // Creates a dropdown of 15 years to control year
+   format: 'dd/mm/yyyy'
+ });
+ $('.timepicker').pickatime({
+    default: 'now',
+    twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
+    donetext: 'OK',
+  autoclose: false,
+  vibrate: true // vibrate the device when dragging clock hand
+});
+});
+</script>
+{% endblock %}

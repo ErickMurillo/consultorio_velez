@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<link href="/static/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <table id="exp">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Edad</th>
+        <th>Sexo</th>
+        <th>Próxima cita</th>
+        <th>Última cita</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for object in object_list %}
+      <tr>
+        <td><a href="{% url 'detail-exp' object.slug %}">{{object.nombre}}</a></td>
+        <td>{{object.edad}}</td>
+        <td>{% if object.sexo == 1 %}Femenino{% elif object.sexo == 2 %}Masculino{% endif %}</td>
+        {% if object.consulta_set.all %}
+        {% for obj in object.consulta_set.all|slice:"1:" %}
+        <td>{{obj.programacion_cita}}</td>
+        <td>{{obj.fecha}}</td>
+        {% endfor %}
+        {% else %}
+        <td></td>
+        <td></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.slider').hide();
+  $('#exp').DataTable();
+});
+</script>
+{% endblock %}
