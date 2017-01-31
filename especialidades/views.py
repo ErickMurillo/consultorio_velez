@@ -91,6 +91,7 @@ class ListExpedientesView(ListView):
 def detail_expediente(request,slug='None'):
 	template = "exp_detail.html"
 	object = Paciente.objects.get(slug = slug)
+	citas = Consulta.objects.filter(paciente = object).last()
 	consultas = Consulta.objects.filter(paciente = object)
 
 	#agregar nueva consulta
@@ -106,17 +107,18 @@ def detail_expediente(request,slug='None'):
 			programacion_cita = form.cleaned_data['programacion_cita']
 			costo = form.cleaned_data['costo']
 			try:
-				new_consulta = form.save()
-				print new_consulta
-				# new_consulta.paciente = paciente
-				# new_consulta.fecha = fecha
-				# new_consulta.motivo = motivo
-				# new_consulta.examen_fisico = examen_fisico
-				# new_consulta.examen = examen
-				# new_consulta.tratamiento = tratamiento
-				# new_consulta.programacion_cita = programacion_cita
-				# new_consulta.costo = costo
-				# new_consulta.save()
+				new_consulta = form.save(commit=False)
+				new_consulta.paciente = paciente
+				new_consulta.fecha = fecha
+				new_consulta.motivo = motivo
+				new_consulta.examen_fisico = examen_fisico
+				new_consulta.examen = examen
+				new_consulta.tratamiento = tratamiento
+				new_consulta.programacion_cita = programacion_cita
+				new_consulta.costo = costo
+				new_consulta.save()
+
+				return http.HttpResponseRedirect('')
 			except:
 				pass
 	else:

@@ -4,6 +4,7 @@ from models import *
 from django import forms
 from django.forms import ModelForm
 from django.contrib.admin import widgets
+from expedientes.models import *
 
 class EmailForm(forms.Form):
       name = forms.CharField(max_length=255)
@@ -11,12 +12,9 @@ class EmailForm(forms.Form):
       phone = forms.IntegerField()
       message = forms.CharField(widget=forms.Textarea)
 
-class ConsultaForm(forms.Form):
-    paciente = forms.IntegerField()
+class ConsultaForm(forms.ModelForm):
     fecha = forms.DateTimeField(widget = widgets.AdminSplitDateTime())
-    motivo = forms.CharField(widget=forms.Textarea)
-    examen_fisico = forms.CharField(widget=forms.Textarea)
-    examen = forms.CharField(widget=forms.Textarea,required=False)
-    tratamiento = forms.CharField(widget=forms.Textarea,required=False)
-    programacion_cita = forms.DateTimeField(required=False)
-    costo = forms.FloatField()
+    programacion_cita = forms.DateTimeField(widget = widgets.AdminSplitDateTime())
+    class Meta:
+        model = Consulta
+        fields = '__all__'
