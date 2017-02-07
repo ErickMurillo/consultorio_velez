@@ -12,5 +12,10 @@ class ConsultaAdmin(admin.ModelAdmin):
     list_display = ('paciente','fecha','programacion_cita')
     search_fields = ['paciente',]
 
+class ResumenClinicoAdmin(admin.ModelAdmin):
+    list_display = ('paciente',)
+    search_fields = ['paciente',]
+
 admin.site.register(Paciente,PacienteAdmin)
 admin.site.register(Consulta,ConsultaAdmin)
+admin.site.register(ResumenClinico,ResumenClinicoAdmin)

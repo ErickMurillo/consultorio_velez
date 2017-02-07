@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^contacto/$', 'especialidades.views.contacto', name='contacto'),
     url(r'^expedientes/$', views.ListExpedientesView.as_view(), name='expedientes'),
     url(r'^expediente/(?P<slug>[\w-]+)/$', 'especialidades.views.detail_expediente', name='detail-exp'),
+    url(r'^resumenes-clinicos/$', views.ListResumenesView.as_view(), name='resumenes-clinicos'),
+    url(r'^resumenes-clinicos/(?P<slug>[\w-]+)/$', 'especialidades.views.detail_resumen', name='resumen-clinico-detail'),
     #filtros
     url(r'^casos-ortopedia/$', views.ListOrtopediaView.as_view(), name='ortopedia'),
     url(r'^casos-trauma/$', views.ListTraumaView.as_view(), name='trauma'),

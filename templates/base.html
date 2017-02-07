@@ -36,7 +36,10 @@
 						<li><a href="/lista-casos/">Casos</a></li>
 						<li><a href="/contacto/">Contacto</a></li>
 						{% if user.is_authenticated %}
-							{% if user.is_superuser %}<li><a href="/expedientes/">Expedientes</a></li>{% endif %}
+							{% if user.is_superuser %}
+								<li><a href="/expedientes/">Expedientes</a></li>
+								<li><a href="/resumenes-clinicos/">Resúmenes Clínicos</a></li>
+							{% endif %}
 						{% endif %}
 					</ul>
 					<ul class="side-nav" id="mobile-demo">
@@ -45,7 +48,10 @@
 						<li><a href="/lista-casos/">Casos</a></li>
 						<li><a href="/contacto/">Contacto</a></li>
 						{% if user.is_authenticated %}
-							{% if user.is_superuser %}<li><a href="/expedientes/">Expedientes</a></li>{% endif %}
+							{% if user.is_superuser %}
+								<li><a href="/expedientes/">Expedientes</a></li>
+								<li><a href="/resumenes-clinicos/">Resúmenes Clínicos</a></li>
+							{% endif %}
 						{% endif %}
 					</ul>
 				</div>

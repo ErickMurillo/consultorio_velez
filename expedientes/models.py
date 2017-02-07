@@ -43,3 +43,15 @@ class Consulta(models.Model):
 
     def __str__(self):
 		return self.paciente.nombre
+
+class ResumenClinico(models.Model):
+    paciente = models.ForeignKey(Paciente)
+    fecha = models.DateField()
+    resumen = RichTextField()
+
+    class Meta:
+        verbose_name = 'Resumen clínico'
+        verbose_name_plural = 'Resúmenes clínicos'
+
+    def __str__(self):
+		return self.paciente.nombre

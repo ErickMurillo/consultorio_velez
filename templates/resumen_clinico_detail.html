@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+  {% for obj in object %}
+  {% if forloop.first %}<h4>Paciente: {{obj.paciente.nombre}}</h4>{% endif %}
+  <div class="col s12">
+    <p>Fecha: {{obj.fecha}}</p>
+    <p>Resumen: {{obj.resumen|safe}}</p>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
