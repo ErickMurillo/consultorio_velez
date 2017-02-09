@@ -7,6 +7,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.views.generic import TemplateView, ListView, DetailView
+from django import http
+from django.template.loader import get_template
 
 # Create your views here.
 class IndexView(TemplateView):
@@ -128,10 +130,39 @@ def detail_expediente(request,slug='None'):
 
 class ListResumenesView(ListView):
 	template_name = "resumen_clinico_list.html"
-	queryset = ResumenClinico.objects.all().order_by('paciente').distinct('paciente')
+	queryset = ResumenClinico.objects.all().order_by('paciente')#.distinct('paciente')
 
 def detail_resumen(request,slug='None'):
 	template = "resumen_clinico_detail.html"
 	object = ResumenClinico.objects.filter(paciente__slug = slug)
 
 	return render(request, template, locals())
+
+#para crear pdf
+import cStringIO as StringIO
+from xhtml2pdf import pisa
+from django.template.loader import get_template
+from django.template import Context
+from django.http import HttpResponse
+from cgi import escape
+
+def render_to_pdf(template_src, context_dict):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html  = template.render(context)
+    result = StringIO.StringIO()
+
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("utf-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return HttpResponse('Houston tenemos errores<pre>%s</pre>' % escape(html))
+
+def resumen_pdf(request, id):
+    object = ResumenClinico.objects.get(id=id)
+    return render_to_pdf(
+            'resumen_pdf.html',
+            {
+                'pagesize':'A4',
+                'object': object,
+            }
+        )

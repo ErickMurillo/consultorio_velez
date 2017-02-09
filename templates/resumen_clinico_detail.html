@@ -6,6 +6,7 @@
   {% for obj in object %}
   {% if forloop.first %}<h4>Paciente: {{obj.paciente.nombre}}</h4>{% endif %}
   <div class="col s12">
+    <a href="/resumen-clinico-pdf/{{obj.id}}" target="_black">Descarga</i></a>
     <p>Fecha: {{obj.fecha}}</p>
     <p>Resumen: {{obj.resumen|safe}}</p>
   </div>
