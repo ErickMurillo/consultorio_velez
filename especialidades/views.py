@@ -131,7 +131,7 @@ def detail_expediente(request,slug='None'):
 
 class ListResumenesView(ListView):
 	template_name = "resumen_clinico_list.html"
-	queryset = ResumenClinico.objects.all().order_by('paciente')#.distinct('paciente')
+	queryset = ResumenClinico.objects.all().order_by('paciente').distinct('paciente')
 
 def detail_resumen(request,slug='None'):
 	template = "resumen_clinico_detail.html"
