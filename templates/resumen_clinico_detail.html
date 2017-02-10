@@ -4,13 +4,31 @@
 <div class="row">
 
   {% for obj in object %}
-  {% if forloop.first %}<h4>Paciente: {{obj.paciente.nombre}}</h4>{% endif %}
-  <div class="col s12">
-    <a href="/resumen-clinico-pdf/{{obj.id}}" target="_black">Descarga</i></a>
-    <p>Fecha: {{obj.fecha}}</p>
-    <p>Resumen: {{obj.resumen|safe}}</p>
+  {% if forloop.first %}
+  <div>
+    <h5 class="center-align">Paciente: {{obj.paciente.nombre}}</h5>
   </div>
+  {% endif %}
+  <div class="col s12 contenido">
+    <div class="right-align">
+      <a class="waves-effect waves-light btn blue lighten-1" href="/resumen-clinico-pdf/{{obj.id}}" target="_black"><i class="material-icons left">assignment</i>PDF</a>
+    </div>
+
+    <p><b>Fecha: {{obj.fecha}}</b></p>
+    <p><b>Resumen:</b></p>
+    <p>{{obj.resumen|safe}}</p>
+  </div>
+  <hr>
   {% endfor %}
 
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+	$(document).ready(function(){
+		$('.contenido p').addClass('flow-text');
+	});
+</script>
+
+{% endblock extra_js %}

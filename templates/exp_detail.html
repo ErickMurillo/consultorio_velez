@@ -6,46 +6,56 @@
 
 {% block content %}
 <div class="row">
-  <div class="col s6">
-    <h4>{{object.nombre}}</h4>
-    <p>Edad: {{object.edad}} años</p>
-    <p>Sexo: {% if object.sexo == 1 %}Femenino{% elif object.sexo == 2 %}Masculino{% endif %}</p>
-    <p>Nacionalidad: {{object.nacionalidad}}</p>
-    <p>Teléfono: {{object.telefono}}</p>
-  </div>
-  <div class="col s6">
-    <p>Próxima cita: {{citas.programacion_cita|date:"l d F Y"}} Hora: {{ citas.programacion_cita|time:"P" }}</p>
-    <p>Última cita: {{citas.fecha|date:"l d F Y"}} Hora: {{ citas.fecha|time:"P" }}</p>
+  <div class="col s12 m6">
+    <div class="card-panel blue lighten-1">
+      <p><h4 class="center-align white-text">{{object.nombre}}</h4></p>
+      <p><span class="white-text">Edad: {{object.edad}} años</span></p>
+      <p><span class="white-text">Sexo: {% if object.sexo == 1 %}Femenino{% elif object.sexo == 2 %}Masculino{% endif %}</span></p>
+      <p><span class="white-text">Nacionalidad: {{object.nacionalidad}}</span></p>
+      <p><span class="white-text">Teléfono: {{object.telefono}}</span></p>
+      <p><span class="white-text"><b>Próxima cita: {{citas.programacion_cita|date:"l d F Y"}} Hora: {{ citas.programacion_cita|time:"P" }}</b></span></p>
+      <p><span class="white-text"><b>Última cita: {{citas.fecha|date:"l d F Y"}} Hora: {{ citas.fecha|time:"P" }}</b></span></p>
+    </div>
   </div>
 </div>
 
+<hr>
+
 <div class="row">
-  <h3>Consultas</h3>
+  <h3 class="center-align">Consultas</h3>
   {% for consulta in consultas %}
-  <div class="col s12">
-    <h5>Fecha consulta: {{consulta.fecha|date:"l d F Y"}} Hora:{{ consulta.fecha|time:"P" }}</h5>
-    <p>Motivo: {{consulta.motivo|safe}}</p>
-    <p>Examen físico: {{consulta.examen_fisico|safe}}</p>
-    <p>Examenes: {{consulta.examen|safe}}</p>
-    <p>Tratamiento: {{consulta.tratamiento|safe}}</p>
-    <p>Próxima cita: {{consulta.programacion_cita|date:"l d F Y"}} Hora:{{ consulta.programacion_cita|time:"P" }}</p>
-    <p>Costo de la cita: {{consulta.costo}}</p>
+  <div class="col s12 contenido {% if forloop.counter|divisibleby:"2" %}grey lighten-3{% endif %}">
+    <div class="right-align">
+      <a class="waves-effect waves-light btn blue lighten-1" href="/tratamiento-pdf/{{consulta.id}}" target="_black"><i class="material-icons left">assignment</i>Imprimir tratamiento</a>
+    </div>
+    <p><b>Fecha consulta: {{consulta.fecha|date:"l d F Y"}} Hora:{{ consulta.fecha|time:"P" }}</b></p>
+    <p><b>Próxima cita: {{consulta.programacion_cita|date:"l d F Y"}} Hora:{{ consulta.programacion_cita|time:"P" }}</b></p>
+    <p><b>Motivo:</b></p>
+    <p>{{consulta.motivo|safe}}</p>
+    <p><b>Examen físico:</b></p>
+    <p>{{consulta.examen_fisico|safe}}</p>
+    <p><b>Examenes:</b></p>
+    <p>{{consulta.examen|safe}}</p>
+    <p><b>Tratamiento:</b></p>
+    <p>{{consulta.tratamiento|safe}}</p>
+    <p><b>Costo de la cita: {{consulta.costo}}</b></p>
   </div>
   <hr>
   {% endfor %}
 </div>
 
-<div class="row">
+<!--<div class="row">
   <form class="" action="." method="POST">{% csrf_token %}
     <div class="row">
       <div class="input-field col s6">
-        <p>Cita</p>
+
         {{form.fecha}}
       </div>
       <div class="input-field col s12">
         {{form.motivo}}
         <label for="icon_telephone">Motivo de la consulta</label>
       </div>
+
       <div class="input-field col s12">
         {{form.examen_fisico}}
         <label for="textarea1">Examen fisico</label>
@@ -71,7 +81,7 @@
       </div>
     </div>
   </form>
-</div>
+</div>-->
 
 {% endblock %}
 
@@ -79,6 +89,7 @@
 <script src="/static/js/materialize.clockpicker.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+  $('#contenido p').addClass('flow-text');
   $('.slider').hide();
   $('#id_paciente').val("{{object.id}}");
   $('#id_paciente').hide();

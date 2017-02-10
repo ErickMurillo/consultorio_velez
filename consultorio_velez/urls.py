@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^resumenes-clinicos/$', views.ListResumenesView.as_view(), name='resumenes-clinicos'),
     url(r'^resumenes-clinicos/(?P<slug>[\w-]+)/$', 'especialidades.views.detail_resumen', name='resumen-clinico-detail'),
     url(r'^resumen-clinico-pdf/(?P<id>[0-9]+)/$', 'especialidades.views.resumen_pdf', name='pdf_resumen'),
+    url(r'^tratamiento-pdf/(?P<id>[0-9]+)/$', 'especialidades.views.tratamiento_pdf', name='pdf_tratamiento'),
     #filtros
     url(r'^casos-ortopedia/$', views.ListOrtopediaView.as_view(), name='ortopedia'),
     url(r'^casos-trauma/$', views.ListTraumaView.as_view(), name='trauma'),

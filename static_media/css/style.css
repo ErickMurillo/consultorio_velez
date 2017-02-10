@@ -1,4 +1,3 @@
-
 footer {
 	background-color: #42a5f5 !important;
 }
@@ -127,4 +126,8 @@ footer .white-text {
 	.slider {
 		display: none;
 	}
+ }
+
+ .card .card-content {
+     padding: 15px !important;
  }

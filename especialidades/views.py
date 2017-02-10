@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from .models import *
 from .forms import *
@@ -146,6 +147,15 @@ from django.template import Context
 from django.http import HttpResponse
 from cgi import escape
 
+# def fetch_resources(uri, rel):
+#     """
+#     Callback to allow pisa/reportlab to retrieve Images,Stylesheets, etc.
+#     `uri` is the href attribute from the html link element.
+#     `rel` gives a relative path, but it's not used here.
+#     """
+#     path = os.path.join(settings.MEDIA_ROOT, uri.replace(settings.MEDIA_URL, ""))
+#     return path
+
 def render_to_pdf(template_src, context_dict):
     template = get_template(template_src)
     context = Context(context_dict)
@@ -163,6 +173,16 @@ def resumen_pdf(request, id):
             'resumen_pdf.html',
             {
                 'pagesize':'A4',
+                'object': object,
+            }
+        )
+
+def tratamiento_pdf(request, id):
+    object = Consulta.objects.get(id=id)
+    return render_to_pdf(
+            'tratamiento_pdf.html',
+            {
+                'pagesize':'A5',
                 'object': object,
             }
         )
