@@ -1,0 +1,1 @@
+.form-box {	padding: 2.1875rem 1.25rem;	background-color: #f3f7fb;}.bg-100 .form-box {	background-color: #fff;}@media (min-width: 576px) {	.form-box {		padding: 2.5rem 2.5625rem;	}}@media (min-width: 1600px) {	.form-box {		margin-left: 2.5rem;		padding: 2.5rem 2.5625rem;	}}
