@@ -5,12 +5,12 @@ let components = {};
 
 components.fontAwesome = {
 	selector: '[class*="fa-"]',
-	styles: './components/font-awesome/font-awesome.css'
+	styles: '/static/components/font-awesome/font-awesome.css'
 };
 
 components.mdi = {
 	selector: '[class*="mdi-"]',
-	styles: './components/mdi/mdi.css'
+	styles: '/static/components/mdi/mdi.css'
 };
 
 components.fontEpilogue = {
@@ -34,120 +34,120 @@ components.pageReveal = {
 
 components.currentDevice = {
 	selector: 'html',
-	script: './components/current-device/current-device.min.js'
+	script: '/static/components/current-device/current-device.min.js'
 };
 
 components.blurb = {
 	selector: '.blurb',
-	styles: './components/blurb/blurb.css'
+	styles: '/static/components/blurb/blurb.css'
 };
 
 components.book = {
 	selector: '.book',
-	styles: './components/book/book.css'
+	styles: '/static/components/book/book.css'
 };
 
 components.button = {
 	selector: '.btn',
-	styles: './components/button/button.css'
+	styles: '/static/components/button/button.css'
 };
 
 components.footer = {
 	selector: 'footer',
-	styles: './components/footer/footer.css'
+	styles: '/static/components/footer/footer.css'
 };
 
 components.formBox = {
 	selector: '.form-box',
-	styles: './components/form-box/form-box.css'
+	styles: '/static/components/form-box/form-box.css'
 };
 
 components.divider = {
 	selector: '.divider',
-	styles: './components/divider/divider.css'
+	styles: '/static/components/divider/divider.css'
 };
 
 components.grid = {
 	selector: '.container, .container-fluid, .row, [class*="col-"]',
-	styles: './components/grid/grid.css'
+	styles: '/static/components/grid/grid.css'
 };
 
 components.icon = {
 	selector: '.icon',
-	styles: './components/icon/icon.css'
+	styles: '/static/components/icon/icon.css'
 };
 
 components.image = {
 	selector: '.image',
-	styles: './components/image/image.css'
+	styles: '/static/components/image/image.css'
 };
 
 components.input = {
 	selector: '.form-group, .input-group, .form-check, .custom-control, .form-control',
-	styles: './components/input/input.css'
+	styles: '/static/components/input/input.css'
 };
 
 components.link = {
 	selector: '.link',
-	styles: './components/link/link.css'
+	styles: '/static/components/link/link.css'
 };
 
 components.list = {
 	selector: '.list',
 	styles: [
-		'./components/list/list.css',
-		'./components/mdi/mdi.css'
+		'/static/components/list/list.css',
+		'/static/components/mdi/mdi.css'
 	]
 };
 
 components.logo = {
 	selector: '.logo',
-	styles: './components/logo/logo.css'
+	styles: '/static/components/logo/logo.css'
 };
 
 components.rights = {
 	selector: '.rights',
-	styles: './components/rights/rights.css'
+	styles: '/static/components/rights/rights.css'
 };
 
 components.preloader = {
 	selector: '.preloader',
-	styles: './components/preloader/preloader.css'
+	styles: '/static/components/preloader/preloader.css'
 };
 
 components.quote = {
 	selector: '.quote',
-	styles: './components/quote/quote.css'
+	styles: '/static/components/quote/quote.css'
 };
 
 components.rdForm = {
 	selector: '.rd-form',
-	styles: './components/rd-form/rd-form.css'
+	styles: '/static/components/rd-form/rd-form.css'
 };
 
 components.section = {
 	selector: 'section',
-	styles: './components/section/section.css'
+	styles: '/static/components/section/section.css'
 };
 
 components.snackbar = {
 	selector: '.snackbar',
-	styles: './components/snackbar/snackbar.css'
+	styles: '/static/components/snackbar/snackbar.css'
 };
 
 components.social = {
 	selector: '.social',
-	styles: './components/social/social.css'
+	styles: '/static/components/social/social.css'
 };
 
 // Script components
 components.accordion = {
 	selector: '.accordion',
-	styles: './components/accordion/accordion.css',
+	styles: '/static/components/accordion/accordion.css',
 	script: [
-		'./components/jquery/jquery.min.js',
-		'./components/current-device/current-device.min.js',
-		'./components/multiswitch/multiswitch.min.js'
+		'/static/components/jquery/jquery.min.js',
+		'/static/components/current-device/current-device.min.js',
+		'/static/components/multiswitch/multiswitch.min.js'
 	],
 	init: function ( nodes ) {
 		nodes.forEach( function ( node ) {
@@ -186,9 +186,9 @@ components.accordion = {
 
 components.gmap = {
 	selector: '.google-map-container',
-	styles: './components/google-map/google-map.css',
+	styles: '/static/components/google-map/google-map.css',
 	script: [
-		'./components/jquery/jquery.min.js',
+		'/static/components/jquery/jquery.min.js',
 	],
 	init: function ( nodes ) {
 		/**
@@ -353,10 +353,10 @@ components.gmap = {
 
 components.multiswitch = {
 	selector: '[data-multi-switch]',
-	styles: './components/multiswitch/multiswitch.css',
+	styles: '/static/components/multiswitch/multiswitch.css',
 	script: [
-		'./components/current-device/current-device.min.js',
-		'./components/multiswitch/multiswitch.js'
+		'/static/components/current-device/current-device.min.js',
+		'/static/components/multiswitch/multiswitch.js'
 	],
 	dependencies: 'rdNavbar',
 	init: function ( nodes ) {
@@ -379,10 +379,10 @@ components.multiswitch = {
 
 components.regula = {
 	selector: '[data-constraints]',
-	styles: './components/regula/regula.css',
+	styles: '/static/components/regula/regula.css',
 	script: [
-		'./components/jquery/jquery.min.js',
-		'./components/regula/regula.min.js'
+		'/static/components/jquery/jquery.min.js',
+		'/static/components/regula/regula.min.js'
 	],
 	init: function ( nodes ) {
 		let elements = $( nodes );
@@ -453,12 +453,12 @@ components.regula = {
 components.rdMailform = {
 	selector: '.rd-mailform',
 	styles: [
-		'./components/rd-mailform/rd-mailform.css',
-		'./components/font-awesome/font-awesome.css'
+		'/static/components/rd-mailform/rd-mailform.css',
+		'/static/components/font-awesome/font-awesome.css'
 	],
 	script: [
-		'./components/jquery/jquery.min.js',
-		'./components/rd-mailform/rd-mailform.min.js',
+		'/static/components/jquery/jquery.min.js',
+		'/static/components/rd-mailform/rd-mailform.min.js',
 	],
 	init: function ( nodes ) {
 		let i, j, k,
@@ -744,13 +744,13 @@ components.rdMailform = {
 components.rdNavbar = {
 	selector: '.rd-navbar',
 	styles: [
-		'./components/rd-navbar/rd-navbar.css'
+		'/static/components/rd-navbar/rd-navbar.css'
 	],
 	script: [
-		'./components/jquery/jquery.min.js',
-		'./components/util/util.min.js',
-		'./components/current-device/current-device.min.js',
-		'./components/rd-navbar/rd-navbar.min.js'
+		'/static/components/jquery/jquery.min.js',
+		'/static/components/util/util.min.js',
+		'/static/components/current-device/current-device.min.js',
+		'/static/components/rd-navbar/rd-navbar.min.js'
 	],
 	dependencies: 'currentDevice',
 	init: function ( nodes ) {
@@ -846,10 +846,10 @@ components.rdNavbar = {
 components.toTop = {
 	selector: 'html',
 	styles: [
-		'./components/to-top/to-top.css',
-		'./components/font-awesome/font-awesome.css',
+		'/static/components/to-top/to-top.css',
+		'/static/components/font-awesome/font-awesome.css',
 	],
-	script: './components/jquery/jquery.min.js',
+	script: '/static/components/jquery/jquery.min.js',
 	init: function () {
 		if ( !window.xMode ) {
 			let node = document.createElement( 'div' );
@@ -875,8 +875,8 @@ components.toTop = {
 components.waypoint = {
 	selector: '[data-custom-scroll-to]',
 	script: [
-		'./components/jquery/jquery.min.js',
-		'./components/waypoint/waypoint.min.js'
+		'/static/components/jquery/jquery.min.js',
+		'/static/components/waypoint/waypoint.min.js'
 	],
 	init: function ( nodes ) {
 		nodes.forEach( function ( node ) {

@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'djangocms_admin_style',
+    # 'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'sorl.thumbnail',
     'embed_video',
-    'endless_pagination',
+    # 'endless_pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +77,7 @@ TEMPLATES = [
 ]
 
 
-ENDLESS_PAGINATION_PER_PAGE = 9
+# ENDLESS_PAGINATION_PER_PAGE = 9
 
 WSGI_APPLICATION = 'consultorio_velez.wsgi.application'
 
