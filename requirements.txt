@@ -7,7 +7,7 @@ djangocms-admin-style==0.2.8
 html5lib==1.0b8
 importlib==1.0.4
 packaging==16.8
-Pillow==6.2.2
+Pillow==8.2.0
 pyparsing==2.1.10
 pyPdf==1.13
 PyPDF2==1.26.0
