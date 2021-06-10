@@ -1,5 +1,5 @@
 appdirs==1.4.0
-Django==1.10
+Django==2.2.24
 django-ckeditor==5.0.2
 django-embed-video==1.0.0
 django-endless-pagination==2.0
